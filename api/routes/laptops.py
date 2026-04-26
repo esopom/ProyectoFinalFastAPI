@@ -39,3 +39,11 @@ async def delete_laptop(laptop_id: int):
     if deleted is None:
         raise HTTPException(status_code=404, detail="Laptop no encontrada")
     return deleted
+
+@router.get("/os/{so_portatil}")
+async def get_portatiles_os(so_portatil: str):
+    return await portatil_data.get_portatilesOS(os=so_portatil)
+
+@router.get("/precio-max/{precio_max}")
+async def get_portatiles_precio_max(precio_max: int):
+    return await portatil_data.get_portatilesPrecioMax(precioMax=precio_max)
