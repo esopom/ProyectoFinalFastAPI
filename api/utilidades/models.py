@@ -9,5 +9,7 @@ class Portatil(BaseModel):
     modelo: str
     precio : int = 0
     OS : str = None
+    marcagpu : str =  None
+    memoriaram : int = 0
 
 
