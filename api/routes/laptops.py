@@ -25,7 +25,9 @@ async def get_laptops(
     summary="Obtener un portátil por id",
     description="Busca un portátil concreto a partir de su identificador.",
 )
-async def get_laptop(laptop_id: int):
+async def get_laptop(
+    laptop_id: int = Path(..., gt=0, description="Identificador del portátil. Debe ser mayor que 0."),
+):
     laptop = await portatil_data.get_portatil(portatil_id=laptop_id)
     if laptop is None:
         raise HTTPException(status_code=404, detail="Laptop no encontrada")
@@ -47,7 +49,10 @@ async def create_laptop(laptop: Portatil):
     summary="Actualizar un portátil",
     description="Actualiza los datos de un portátil existente a partir de su identificador.",
 )
-async def update_laptop(laptop_id: int, laptop: Portatil):
+async def update_laptop(
+    laptop_id: int = Path(..., gt=0, description="Identificador del portátil. Debe ser mayor que 0."),
+    laptop: Portatil = ...,
+):
     updated = await portatil_data.update_portatil(portatil_id=laptop_id, portatil=laptop)
     if updated is None:
         raise HTTPException(status_code=404, detail="Laptop no encontrada")
@@ -59,7 +64,9 @@ async def update_laptop(laptop_id: int, laptop: Portatil):
     summary="Eliminar un portátil",
     description="Elimina un portátil existente a partir de su identificador.",
 )
-async def delete_laptop(laptop_id: int):
+async def delete_laptop(
+    laptop_id: int = Path(..., gt=0, description="Identificador del portátil. Debe ser mayor que 0."),
+):
     deleted = await portatil_data.delete_portatil(portatil_id=laptop_id)
     if deleted is None:
         raise HTTPException(status_code=404, detail="Laptop no encontrada")
@@ -76,11 +83,11 @@ async def get_portatiles_os(
     return await portatil_data.get_portatilesOS(os=so_portatil)
 
 @router.get(
-    "/precio-max/{precio_max}",
+    "/precio-max/{precio_maximo}",
     summary="Filtrar portátiles por precio máximo",
     description="Devuelve los portátiles cuyo precio es menor o igual que el valor indicado.",
 )
 async def get_portatiles_precio_max(
-    precio_max: int = Path(..., description="Precio máximo permitido para devolver portátiles."),
+    precio_maximo: int = Path(..., gt=0, description="Precio máximo permitido para devolver portátiles. Debe ser mayor que 0."),
 ):
-    return await portatil_data.get_portatilesPrecioMax(precioMax=precio_max)
+    return await portatil_data.get_portatilesPrecioMax(precioMax=precio_maximo)
