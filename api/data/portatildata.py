@@ -82,7 +82,7 @@ class PortatilData:
         self.filePortatiles.close()
         return portatilDict
 
-    # Recibimos y actualizamos un nuevo ingrediente
+    # Recibimos y actualizamos un nuevo portatil
     async def update_portatil(self, portatil_id: int, portatil: Portatil):
         self.filePortatiles=open(self.directorio_trabajo+'portatiles.json', 'w')
         #Buscamos el portatil
