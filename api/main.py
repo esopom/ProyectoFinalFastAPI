@@ -4,7 +4,7 @@ from api.routes.laptops import router as laptops_router
 
 app = FastAPI(title="API Portatiles")
 
-app.include_router(laptops_router)
+app.include_router(laptops_router, tags=["laptops"])
 
 
 @app.get("/")

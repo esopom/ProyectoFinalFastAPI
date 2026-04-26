@@ -3,7 +3,7 @@ from fastapi import APIRouter, HTTPException
 from api.data.portatildata import PortatilData
 from api.utilidades.models import Portatil
 
-router = APIRouter(prefix="/laptops", tags=["laptops"])
+router = APIRouter(prefix="/laptops")
 portatil_data = PortatilData()
 
 
