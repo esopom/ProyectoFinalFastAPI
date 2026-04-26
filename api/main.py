@@ -2,7 +2,7 @@ from fastapi import FastAPI
 
 from api.routes.laptops import router as laptops_router
 
-app = FastAPI(title="API Portatiles")
+app = FastAPI(title="API Portatiles", description="Vamos a hacer un repaso de todo el curso para poner en práctica todos nuestros conocimientos, que son muchos y muy interesantes.", version="1.0", contact="tomasadrian876@gmail.com", license_info="Proprietary")
 
 app.include_router(laptops_router, tags=["laptops"])
 
